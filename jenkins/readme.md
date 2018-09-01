@@ -40,3 +40,6 @@ The key's randomart image is:
 
 - SSH接続するslave用途のDockerイメージ：jenkinsci/ssh-slave
 - 環境変数「JENKINS_SLAVE_SSH_PUBKEY」を設定：MasterからのSSH接続が許可されます
+- エラー：ERROR: failed to register layer: ApplyLayer exit status 1 stdout:  stderr: write /usr/share/mime/globs2: no space left on device
+	- https://github.com/moby/moby/issues/29508
+	- スペースがないとの事なので「docker rmi -f $(docker images -q)」で既存のdockerイメージをとりあえず削除して再実行したら解決した
